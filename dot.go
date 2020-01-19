@@ -37,6 +37,7 @@ func dotToImage(outfname string, format string, dot []byte) (string, error) {
 	} else {
 		img = fmt.Sprintf("%s.%s", outfname, format)
 	}
+	ioutil.WriteFile("test.dot",dot, 0644)
 	cmd := exec.Command(dotExe, fmt.Sprintf("-T%s", format), "-o", img)
 	cmd.Stdin = bytes.NewReader(dot)
 	if err := cmd.Run(); err != nil {
